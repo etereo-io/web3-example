@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
+
 import Head from 'next/head'
+import Link from 'next/link'
 
 type Props = {
   children?: ReactNode
@@ -19,15 +20,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
         <Link href="/">
           <a>Home</a>
         </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
+        
       </nav>
     </header>
     {children}
