@@ -31,18 +31,18 @@ const IndexPage = () => {
       try {
         // Request account access
         await window.ethereum.enable();
-        
+
         return true
-      } catch(e) {
+      } catch (e) {
         // User denied access
         return false
       }
-      
+
     }
-  
+
     return false;
   }
-  
+
 
   const onClickConnect = async () => {
     if (await !ethEnabled()) {
@@ -52,7 +52,7 @@ const IndexPage = () => {
     setWeb3Enabled(true)
 
     var accs = await web3.eth.getAccounts();
-    console.log(accounts)
+
 
     const newAccounts = await Promise.all(accs.map(async (address: string) => {
       const balance = await web3.eth.getBalance(address)
@@ -80,22 +80,63 @@ const IndexPage = () => {
 
   }
 
-  
-  return (
-    <Layout title="Home | Next.js + TypeScript Example">
-      <h1>Hello Web3.js 👋</h1>
-      <p>
-       {!web3Enabled && <button onClick={onClickConnect}>Connect</button>}
-      </p>
 
-      {accounts && accounts.map((account) => {
-        return (
-          <div className="account" key={account.address}>
-            <Account account={account} />
-          </div>
-        )
-      })}
-      
+  return (
+    <Layout title="Web3.js example">
+      <h1>Hello Web3.js 👋</h1>
+
+      <div className="actions">
+        {!web3Enabled && <button onClick={onClickConnect}>Connect</button>}
+      </div>
+
+
+      {accounts && accounts.length > 0 && <div className="accounts">
+        {accounts.map((account) => {
+          return (
+            <div className="account" key={account.address}>
+              <Account account={account} />
+            </div>
+          )
+        })}
+      </div>}
+
+      <style jsx global>
+        {
+          `
+          body {
+            padding: 0;
+            margin: 0;
+          }
+          `
+        }
+      </style>
+      <style jsx>{
+        `
+        h1 {
+          text-align: center;
+        }
+
+        .actions {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        button {
+          background: black; 
+          color: white;
+          border: none;
+          border-radius: 10px;
+          padding: 15px;
+          cursor: pointer;
+        }
+
+        .account {
+          margin: 15px;
+        }
+        `
+      }</style>
+
     </Layout>
   )
 }

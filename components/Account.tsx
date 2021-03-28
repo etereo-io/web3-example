@@ -11,7 +11,7 @@ export default function Account({
     <>
       <div className="account">
         <div className="address">
-          {account.address}
+          <label>Address: </label>{account.address}
         </div>
         <div className="balance">
           <div className="token-logo">
@@ -42,7 +42,18 @@ export default function Account({
         `
         .account {
           border-radius: borderRadius;
-          
+        }
+
+        label {
+          font-weight: bold;
+        }
+
+        .balance {
+          display: flex;
+        }
+
+        .balance-value {
+          margin-left: 15px;
         }
         `
       }</style>

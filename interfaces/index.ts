@@ -1,10 +1,10 @@
 
-type TokenType = {
+export type TokenType = {
   token: string,
   balance: string
 }
 
-type AccountType = {
+export type AccountType = {
   address: string,
   balance: string,
   tokens: TokenType[]
